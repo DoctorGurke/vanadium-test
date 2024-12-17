@@ -2,6 +2,7 @@
 
 #include "core/log.h"
 #include "vulkan/vk_initializers.h"
+#include "vulkan/vk_debugger.h"
 
 VulkanRenderer::VulkanRenderer(const RendererProperties &properties)
     : settings(properties)

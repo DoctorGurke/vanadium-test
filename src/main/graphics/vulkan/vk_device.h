@@ -2,7 +2,6 @@
 
 #include <vulkan/vulkan.hpp>
 #include "vk_buffer.h"
-#include "vk_debugger.h"
 
 #define DEFAULT_FENCE_TIMEOUT 100000000000
 

@@ -2,6 +2,7 @@
 
 #include "core/log.h"
 #include "vk_initializers.h"
+#include "vk_debugger.h"
 
 /**
  * Default constructor
