@@ -1,0 +1,10 @@
+macro(builder_import_qt_modules)
+    set(qtdir $ENV{QTDIR})
+    if (qtdir)
+        list(APPEND CMAKE_PREFIX_PATH "${qtdir}")
+    endif()
+
+    foreach(component ${ARGN})
+        find_package(Qt5${component} REQUIRED)
+    endforeach()
+endmacro()
