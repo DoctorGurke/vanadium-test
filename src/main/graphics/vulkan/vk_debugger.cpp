@@ -31,6 +31,15 @@ namespace Debug
         return VK_FALSE;
     }
 
+    void CheckResult(const VkResult &result)
+    {
+        if (result != VK_SUCCESS)
+        {
+            Log::Error("Fatal Vulkan Error!"); // todo enum helper to print
+            assert(result == VK_SUCCESS);
+        }
+    }
+
     // Used to populate a VkDebugUtilsMessengerCreateInfoEXT with our messenger function and desired flags
     void Debug::SetupDebuggingMessengerCreateInfo(
         VkDebugUtilsMessengerCreateInfoEXT &debugUtilsMessengerCI)
@@ -47,8 +56,9 @@ namespace Debug
     }
 
     // Load debug function pointers and set debug callback
-    void Debug::SetupDebugging(VkInstance instance)
+    VkResult Debug::SetupDebugging(VkInstance instance)
     {
+        Log::System("Vulkan Debugger Init");
         Debug::vkCreateDebugUtilsMessengerEXT = reinterpret_cast<
             PFN_vkCreateDebugUtilsMessengerEXT>(vkGetInstanceProcAddr(
             instance,
@@ -65,8 +75,8 @@ namespace Debug
             &debugUtilsMessengerCI,
             nullptr,
             &Debug::debugUtilsMessenger);
-        assert(result == VK_SUCCESS);
-        Log::System("Vulkan Debugger Init");
+
+        return result;
     }
 
     // Clear debug callback

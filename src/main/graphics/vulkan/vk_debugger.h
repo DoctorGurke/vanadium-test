@@ -3,6 +3,7 @@
 #include <string>
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.hpp>
+#include "core/log.h"
 
 namespace Debug
 {
@@ -12,9 +13,11 @@ namespace Debug
         const VkDebugUtilsMessengerCallbackDataEXT *pCallbackData,
         void *pUserData);
 
+    void CheckResult(const VkResult& result);
+
     void SetupDebuggingMessengerCreateInfo(
         VkDebugUtilsMessengerCreateInfoEXT &debugUtilsMessengerCI);
-    void SetupDebugging(VkInstance instance);
+    VkResult SetupDebugging(VkInstance instance);
     void FreeDebugCallback(VkInstance instance);
     void SetupLabels(VkInstance instance);
     void BeginLabel(VkCommandBuffer cmdbuffer,

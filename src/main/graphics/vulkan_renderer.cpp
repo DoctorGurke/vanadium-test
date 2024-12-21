@@ -40,7 +40,10 @@ VkResult VulkanRenderer::InitVulkan()
 
     if (settings.Debug)
     {
-        Debug::SetupDebugging(instance);
+        result = Debug::SetupDebugging(instance);
+
+        if (result != VK_SUCCESS)
+            return result;
     }
 
     // grab physical device & info
